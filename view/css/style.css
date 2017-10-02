@@ -2,7 +2,6 @@
 	clear: both;
 }
 #side_bar{
-	z-index: -1;
 	position: fixed;
 }
 .usersSideBar i.fa{

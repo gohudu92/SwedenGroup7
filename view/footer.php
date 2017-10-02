@@ -1,4 +1,15 @@
-<div class="container">
+
+</div><!-- Closing main container -->
+
+<div class="col-xs-2 well" id="side_bar">
+    <?php include_once($_SERVER['DOCUMENT_ROOT']."/view/side_bar/side_bar.php"); ?>
+</div>
+
+<footer>
+
+</footer>
+
+<div class="container" style="z-index: 1">
     <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="margin-left:10px;">
         <div class="col-xs-12 col-md-12">
             <div class="panel panel-default">
@@ -49,6 +60,8 @@
         </div>
     </div>
 
+
+
     <div class="btn-group dropup">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-cog"></span>
@@ -63,17 +76,6 @@
         </ul>
     </div>
 </div>
-
-
-</div><!-- Closing main container -->
-
-<div class="col-xs-2 well" id="side_bar">
-    <?php include_once($_SERVER['DOCUMENT_ROOT']."/view/side_bar/side_bar.php"); ?>
-</div>
-
-<footer>
-
-</footer>
 
 <script src="/view/js/script.js"></script>
 <script src="/view/js/chat.js"></script>
