@@ -1,0 +1,2 @@
+<?php
+$nameWebsite="Fake Facebook";
