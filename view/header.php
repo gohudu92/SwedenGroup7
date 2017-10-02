@@ -23,7 +23,6 @@ if($current_page=='index.php'){
 	<script src="/view/library/jquery/jquery-3.2.1.min.js"></script>
     <script src="/view/library/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<!-- Library -->
-    <script src="/view/js/script.js"></script>
 </head>
 <body>
 <header>
@@ -153,9 +152,10 @@ if($current_page=='index.php'){
 		</div>
 	</div>
 </div>
+	<div style="width: 100%; height: 50px"></div><!-- because nav is fixed top -->
 <?php
 if(isset($resulRegistrationLogin) AND $resulRegistrationLogin!="" AND is_string($resulRegistrationLogin)){
-	echo"<br/><br/><br/>
+	echo"
 	<div class='alert alert-danger'>
 		<strong>".$resulRegistrationLogin."</strong>
 	</div>
@@ -163,3 +163,4 @@ if(isset($resulRegistrationLogin) AND $resulRegistrationLogin!="" AND is_string(
 }
 ?>
 </header>
+<div class="col-xs-10">

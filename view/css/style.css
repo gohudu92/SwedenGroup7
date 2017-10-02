@@ -1,3 +1,8 @@
 .modal-footer{
 	clear: both;
 }
+#side_bar{
+	background-color: lightgray;
+	position: fixed;
+	right: 0px;
+}
