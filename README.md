@@ -1,7 +1,26 @@
 To start
 ========
 
-- Clone the repository
+Clone the repository
+
+	- Dans htdocs(pour xampp) ou www(pour wampp) avec l'invite de commande écrire "git init"
+	- Ensuite "git clone https://github.com/gohudu92/SwedenGroup7.git"
+	- La tu nous demande de t'ajouter en contributors
+	- Dès que c'est fait on te le dit
+	- C'est fait
+	
+Pour récupérer les futurs modification:
+	
+	- 'git pull'
+	
+Pour envoyer tes modifications:
+
+	- 'git add .'
+	- 'git commit -m "Ecris ce que tu as changé en quelques mots"'
+	- 'git push'
+	- Voila et maintenant on peut récupérer tes modifs avec 'git pull'
+	
+Pour se connecter à la base de donner rendre l'adresse: http://www.phpmyadmin.co/ puis tu remplis le formulaire avec les infos Database Connection
 
 - host database:
 
