@@ -1,19 +1,21 @@
-# SwedenGroup7
+To start
+========
 
-session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=lol;charset=utf8', 'root', '');
+- Clone the repository
 
-$stmt = $bdd->prepare('UPDATE table SET var ="'.$var.'" WHERE var2 = "'.$var2.'"');
-$stmt->execute();
+- host database:
 
-$stmt = $bdd->query('DELETE FROM table WHERE var = "'.$var.'"');
+Account:
+	https://www.freemysqlhosting.net/account/
+	alexandre.beaujour@hotmail.fr
+	I%&IS7i6HKsHu3&Wmpn!
+	
+Database Connection:
+	Server: sql11.freemysqlhosting.net
+	Name: sql11197355
+	Username: sql11197355
+	Password: QuLa6Nz6gb
+	Port number: 3306
 
-$stmt = $bdd->prepare('INSERT INTO table(var, var2) VALUES(?, ?)');
-$stmt >execute(array($var, $var2));
-
-$datas= $bdd->prepare('SELECT * FROM table WHERE var = ?');
-$datas->execute(array($var));
-while($data = $datas->fetch())
-{
-
-}
+PhpMyAdmin:
+	http://www.phpmyadmin.co/
