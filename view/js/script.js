@@ -1,7 +1,11 @@
 $( document ).ready(function() {
-    $("#side_bar").height($(window).height()-50);
+    heightSideBar();
 });
 
-$( document ).resize(function() {
-    $("#side_bar").height($(window).height()-50);
+$( window ).resize(function() {
+    heightSideBar();
 });
+
+function heightSideBar(){
+    $("#side_bar").height($(window).height()-50);
+}

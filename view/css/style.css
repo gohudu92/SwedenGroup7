@@ -2,7 +2,10 @@
 	clear: both;
 }
 #side_bar{
-	background-color: lightgray;
+	z-index: -1;
 	position: fixed;
-	right: 0px;
+}
+.usersSideBar i.fa{
+	padding-left: 10px;
+	cursor: pointer;
 }

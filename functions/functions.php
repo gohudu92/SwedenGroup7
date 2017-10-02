@@ -1,4 +1,5 @@
 <?php
+
 function loginUser($mail,$username,$password,$bdd){
 	if($mail=="" OR $username=="" OR $mail==null OR $username==null){
 		return "Mail or Username required";
@@ -51,4 +52,18 @@ function registerUser($mail,$username,$password,$password2,$bdd){
 	}
 	$req=$bdd->prepare("INSERT INTO `user`(`mail`, `password`, `username`) VALUES (?,?,?)");
 	$req->execute(array($mail,sha1($password),$username));
+}
+
+function isConnected(){
+    if(isset($_SESSION['id'])){
+        return true;
+    }
+    return false;
+}
+
+function getId(){
+    if(isConnected()){
+        return $_SESSION['id'];
+    }
+    return null;
 }
