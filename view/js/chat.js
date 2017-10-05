@@ -66,7 +66,6 @@ function sendMessage(contentInput, idReceiver) {
             var childAllChatBox = $("#allChatBox").children();
             $(childAllChatBox).each(function () {
                 var $thisChatBox = $(this);
-
                 $($thisChatBox).find(".msg_container_base").append('' +
                     '<div class="row msg_container base_sent">' +
                     '<div class="col-md-10 col-xs-10">' +
@@ -82,7 +81,8 @@ function sendMessage(contentInput, idReceiver) {
                     '</div>' +
                     '</div>' +
                     '');
-
+                var height = $($thisChatBox).find(".msg_container_base")[0].scrollHeight;
+                $($thisChatBox).find(".msg_container_base").scrollTop(height);
             });
         });
 }
@@ -147,6 +147,10 @@ function sendMessage(contentInput, idReceiver) {
                                 '');
                         }
                     }
+                    if(arr.length>0){
+                        var height = $($thisChatBox).find(".msg_container_base")[0].scrollHeight;
+                        $($thisChatBox).find(".msg_container_base").scrollTop(height);
+                    }
                 });
         });
         waitUpdateShowMessage();
@@ -210,6 +214,8 @@ function sendMessage(contentInput, idReceiver) {
                                         '');
                                 }
                             }
+                            var height = $($thisChatBox).find(".msg_container_base")[0].scrollHeight;
+                            $($thisChatBox).find(".msg_container_base").scrollTop(height);
                         });
                 }
             }
