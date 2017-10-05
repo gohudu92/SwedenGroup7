@@ -59,25 +59,19 @@
             </div>
         </div>
     </div>
-
-
-
-    <div class="btn-group dropup">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-cog"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
-            <li class="divider"></li>
-            <li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
-        </ul>
-    </div>
 </div>
 
+<script src="/view/js/parameters.js"></script>
 <script src="/view/js/script.js"></script>
-<script src="/view/js/chat.js"></script>
+<?php
+if (isConnected()){?>
+    <script src="/view/js/reloadConnection.js"></script>
+    <script src="/view/js/chat.js"></script>
+    <script>
+        $(document).ready(function () {
+            updateOnlinefForThisUser(<?= getId(); ?>);
+        });
+    </script>
+<?php } ?>
 </body>
 </html>

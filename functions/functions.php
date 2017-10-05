@@ -52,6 +52,15 @@ function registerUser($mail,$username,$password,$password2,$bdd){
 	}
 	$req=$bdd->prepare("INSERT INTO `user`(`mail`, `password`, `username`) VALUES (?,?,?)");
 	$req->execute(array($mail,sha1($password),$username));
+
+    $datas = $bdd->prepare("SELECT * FROM `user` WHERE username=?");
+    $datas->execute(array($username));
+    $id_user=0;
+    while ($data = $datas->fetch()) {
+        $id_user=$data['id'];
+    }
+    $req=$bdd->prepare("INSERT INTO `online`(`id_user`, `time`) VALUES (?,?)");
+    $req->execute(array($id_user,time()));
 }
 
 function isConnected(){
