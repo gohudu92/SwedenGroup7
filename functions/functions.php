@@ -1,5 +1,24 @@
 <?php
 
+reloadUserSession($bdd);
+
+function reloadUserSession($bdd)
+{
+    if(isConnected()){
+        $datas = $bdd->prepare("SELECT * FROM `user` WHERE id=?");
+        $datas->execute(array(getId()));
+        while ($data = $datas->fetch()) {
+            $_SESSION['id'] = $data['id'];
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['mail'] = $data['mail'];
+            $_SESSION['image'] = $data['image'];
+            return true;
+        }
+    } else{
+        return false;
+    }
+}
+
 function loginUser($mail,$username,$password,$bdd){
 	if($mail=="" OR $username=="" OR $mail==null OR $username==null){
 		return "Mail or Username required";
@@ -27,7 +46,8 @@ function loginUser($mail,$username,$password,$bdd){
 			if($data['password']==sha1($password)){
 				$_SESSION['id']=$data['id'];
 				$_SESSION['username']=$data['username'];
-				$_SESSION['mail']=$data['mail'];
+                $_SESSION['mail']=$data['mail'];
+                $_SESSION['image']=$data['image'];
 				return true;
 			}
 		}

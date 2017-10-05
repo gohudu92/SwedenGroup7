@@ -12,19 +12,35 @@ include_once("view/header.php");
                             <div class="well well-sm">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <img src="/view/img/default.png" alt=""
-                                             class="img-rounded img-responsive"/>
+                                        <?php
+                                        if($_SESSION['image']!=null AND $_SESSION['image']!=""){ ?>
+                                            <img src="/view/img/uploads/<?= $_SESSION['image']; ?>" alt=""
+                                                 class="img-rounded img-responsive"/>
+                                        <?php }else{ ?>
+                                            <img src="/view/img/default.png" alt=""
+                                                 class="img-rounded img-responsive"/>
+                                        <?php } ?>
                                     </div>
                                     <div class="col-xs-6">
                                         <div class="col-xs-12 noPadding">
                                             <h4><label>Your name</label>
-                                                <div class="col-xs-11 noPadding">
-                                                    <input value="<?= $_SESSION['username']; ?>" type="text"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col-xs-1 noPadding">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                                                </div>
+                                                <?php
+                                                if(isset($errorFormName)){ ?>
+                                                    <div class="alert alert-success alert-dismissable">
+                                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                        <strong><?= $errorFormName; ?></strong>
+                                                    </div>
+                                                <?php } ?>
+                                                <form method="post" enctype="multipart/form-data">
+                                                    <div class="col-xs-11 noPadding">
+                                                        <input name="username" value="<?= $_SESSION['username']; ?>" type="text"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="col-xs-1 noPadding">
+                                                        <button style="border: hidden;background-color: transparent;" name="formUploadName" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             </h4>
                                         </div>
                                         <small><cite title="San Francisco, USA">Jönköping, Sweden <i
@@ -32,41 +48,70 @@ include_once("view/header.php");
                                                 </i></cite></small>
                                         <div class="col-xs-12 noPadding">
                                             <h4><label>Your mail</label>
-                                                <div class="col-xs-11 noPadding">
-                                                    <input value="<?= $_SESSION['mail']; ?>" type="email"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col-xs-1 noPadding">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                                                </div>
+                                                <?php
+                                                if(isset($errorFormMail)){ ?>
+                                                    <div class="alert alert-success alert-dismissable">
+                                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                        <strong><?= $errorFormMail; ?></strong>
+                                                    </div>
+                                                <?php } ?>
+                                                <form method="post" enctype="multipart/form-data">
+                                                    <div class="col-xs-11 noPadding">
+                                                        <input name="mail" value="<?= $_SESSION['mail']; ?>" type="email"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="col-xs-1 noPadding">
+                                                        <button style="border: hidden;background-color: transparent;" name="formUploadMail" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             </h4>
                                         </div>
                                         <div class="col-xs-12 noPadding">
                                             <h4><label>Change your photo</label>
+                                            <?php
+                                            if(isset($errorFormPicture)){ ?>
+                                                <div class="alert alert-success alert-dismissable">
+                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                    <strong><?= $errorFormPicture; ?></strong>
+                                                </div>
+                                            <?php } ?>
+                                            <form method="post" enctype="multipart/form-data">
                                                 <div class="col-xs-11 noPadding">
-                                                    <input type="file">
+                                                    <input name="fileToUpload" type="file"/>
                                                 </div>
                                                 <div class="col-xs-1 noPadding">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                                    <button style="border: hidden;background-color: transparent;" name="formUploadPicture" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                                    </button>
                                                 </div>
+                                            </form>
                                             </h4>
                                         </div>
                                     </div>
                                     <div class="col-xs-12">
-                                        <div class="form-group">
-                                            <label>Previous password:</label>
-                                            <input name="prePassword" type="password" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>New password:</label>
-                                            <input name="newPassword" type="password" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Confirm new password:</label>
-                                            <input name="confirmNewPassword" type="password"
-                                                   class="form-control">
-                                        </div>
-                                        <button class="btn btn-primary form-control">Change password</button>
+                                        <?php
+                                        if(isset($errorFormPassword)){ ?>
+                                            <div class="alert alert-success alert-dismissable">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <strong><?= $errorFormPassword; ?></strong>
+                                            </div>
+                                        <?php } ?>
+                                        <form method="post" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label>Previous password:</label>
+                                                <input name="prePassword" type="password" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>New password:</label>
+                                                <input name="newPassword" type="password" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Confirm new password:</label>
+                                                <input name="confirmNewPassword" type="password"
+                                                       class="form-control">
+                                            </div>
+                                            <button name="changePassword" class="btn btn-primary form-control">Change password</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
