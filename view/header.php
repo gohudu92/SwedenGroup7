@@ -32,7 +32,10 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/functions/_functions.php");
             </div>
             <ul class="nav navbar-nav">
                 <li class="<?php echo ($current_page == 'index.php') ? 'active' : NULL ?>"><a href="/">Home</a></li>
-                <li class="<?php echo ($current_page == 'profile.php') ? 'active' : NULL ?>"><a href="/profile.php">Profile</a></li>
+                <?php
+                if(isConnected()){ ?>
+                    <li class="<?php echo ($current_page == 'profile.php') ? 'active' : NULL ?>"><a href="/profile.php">Profile</a></li>
+                <?php } ?>
             </ul>
             <?php if (!isset($_SESSION) OR (empty($_SESSION))): ?>
                 <form class="navbar-form navbar-right" method="POST">
