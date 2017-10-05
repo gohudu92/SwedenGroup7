@@ -25,8 +25,9 @@ if(count($resultIdConnected)>0){
     $result=array();
     $y=0;
     while ($data = $datas->fetch()) {
-        $result[$y]=$data['username'];
-        $y++;
+        $result[$y]=[$data['username']];
+        $result[$y+1]=[$data['id']];
+        $y=$y+2;
     }
 }
 $result=json_encode($result);
