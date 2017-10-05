@@ -1,1 +1,2 @@
-var timeBeforeReloadOnline=3000;
+var timeBeforeReloadOnline=1000;
+var timeBeforeShowOnline=2000;

@@ -73,5 +73,10 @@ if (isConnected()){?>
         });
     </script>
 <?php } ?>
+<script>
+    $(document).ready(function () {
+        updateShowOnlinefForThisUser();
+    });
+</script>
 </body>
 </html>
