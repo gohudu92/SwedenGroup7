@@ -1,4 +1,4 @@
-<div style="width: 100%; height: 50px"></div>
+<div id="divBeforeSideBar" style="width: 100%;"></div>
 <h4>Connected User</h4>
 
 <script>
