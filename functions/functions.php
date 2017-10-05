@@ -1,6 +1,8 @@
 <?php
 
-reloadUserSession($bdd);
+if(isConnected()){
+    reloadUserSession($bdd);
+}
 
 function reloadUserSession($bdd)
 {
