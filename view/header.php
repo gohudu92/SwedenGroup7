@@ -22,7 +22,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/functions/_functions.php");
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/"><?= $nameWebsite; ?></a>
@@ -161,7 +161,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/functions/_functions.php");
             </div>
         </div>
     </div>
-    <div style="width: 100%; height: 50px"></div><!-- because nav is fixed top -->
     <?php
     if (isset($resulRegistrationLogin) AND $resulRegistrationLogin != "" AND is_string($resulRegistrationLogin)) {
         echo "
