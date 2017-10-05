@@ -1,6 +1,8 @@
 To start
 ========
 
+Modif Yoann
+
 Clone the repository
 
 	- Dans htdocs(pour xampp) ou www(pour wampp) avec l'invite de commande écrire "git init"
