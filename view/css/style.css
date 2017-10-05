@@ -1,8 +1,13 @@
+body{
+	overflow-x: hidden;
+}
 .modal-footer{
 	clear: both;
 }
 #side_bar{
 	position: fixed;
+	top: 0px;
+	z-index: -1;
 }
 .usersSideBar i.fa{
 	padding-left: 10px;
@@ -10,4 +15,9 @@
 }
 nav{
 	margin-bottom: 0px !important;
+	border-radius: 0px !important;
+}
+
+.container{
+	width: 100% !important;
 }

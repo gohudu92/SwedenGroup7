@@ -1,3 +1,4 @@
+<div style="width: 100%; height: 50px"></div>
 <h4>Connected User</h4>
 
 <script>

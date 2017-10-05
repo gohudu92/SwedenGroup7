@@ -7,5 +7,5 @@ $( window ).resize(function() {
 });
 
 function heightSideBar(){
-    $("#side_bar").height($(window).height()-50);
+    $("#side_bar").height($(window).height());
 }

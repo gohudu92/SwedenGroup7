@@ -7,11 +7,13 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/functions/_functions.php");
     <title>Title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/view/img/logo.ico" />
 
     <!-- Library -->
     <link rel="stylesheet" href="/view/library/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/view/library/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- Library -->
+
     <link rel="stylesheet" href="/view/css/chat.css">
     <link rel="stylesheet" href="/view/css/style.css">
 
@@ -19,6 +21,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/functions/_functions.php");
     <script src="/view/library/jquery/jquery-3.2.1.min.js"></script>
     <script src="/view/library/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <!-- Library -->
+
 </head>
 <body>
 <header>
@@ -29,6 +32,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/functions/_functions.php");
             </div>
             <ul class="nav navbar-nav">
                 <li class="<?php echo ($current_page == 'index.php') ? 'active' : NULL ?>"><a href="/">Home</a></li>
+                <li class="<?php echo ($current_page == 'profile.php') ? 'active' : NULL ?>"><a href="/profile.php">Profile</a></li>
             </ul>
             <?php if (!isset($_SESSION) OR (empty($_SESSION))): ?>
                 <form class="navbar-form navbar-right" method="POST">
@@ -171,4 +175,4 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/functions/_functions.php");
     }
     ?>
 </header>
-<div class="col-xs-10">
+<div class="col-xs-10 col-xs-offset-2">

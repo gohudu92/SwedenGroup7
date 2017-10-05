@@ -4,4 +4,7 @@ $title = "No title";
 if ($current_page == 'index.php') {
     $title = "Home";
 }
-$nameWebsite="Fake Facebook";
+if ($current_page == 'profile.php') {
+    $title = "Profile";
+}
+$nameWebsite = "Fake Facebook";
