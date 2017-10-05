@@ -10,7 +10,7 @@ while ($data = $datas->fetch()) {
 }
 ?>
 
-<div id="<?= $_POST['id']; ?>" class="row chat-window newChat col-xs-3" style="left: 0px;">
+<div id="<?= $_POST['id']; ?>" class="row chat-window newChat col-sm-3 col-xs-6" style="left: 0px;">
     <div class="col-xs-12" style="padding-left: 0px;">
         <div class="panel panel-default">
             <div class="panel-heading top-bar">
