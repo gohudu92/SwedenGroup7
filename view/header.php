@@ -38,7 +38,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/functions/_functions.php");
                 <form class="navbar-form navbar-right" method="POST">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" class="form-control" name="emailUsername" value=""
+                        <input type="email" class="form-control" name="emailUsername" value=""
                                placeholder="Email Or Username">
                     </div>
                     <div class="input-group">
