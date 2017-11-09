@@ -8,8 +8,13 @@ include_once("view/header.php");
         <div class="col-xs-8 col-xs-offset-2">
             <?php if (isConnected()) { ?>
                 <div id="editor"></div>
-                <div class="end-editor">
-                    <button id="sendEditorData" type="button" class="btn btn-primary">Send</button>
+                <div class="end-editor" style="display: inline-block">
+                    <div class="col-xs-10">
+                        <input class="form-control" id="categoryInput" placeholder="Category"/>
+                    </div>
+                    <div class="col-xs-2">
+                        <button id="sendEditorData" type="button" class="btn btn-primary">Send</button>
+                    </div>
                 </div>
             <?php } ?>
             <div id="allPost"></div>
@@ -171,10 +176,13 @@ include_once("view/header.php");
         $("#sendEditorData").click(function () {
             var data = CKEDITOR.instances.editor.getData();
             var datas = JSON.stringify(data);
+            category = $("#categoryInput").val();
+            $("#categoryInput").val("");
             $.post("/functions/ajax/sendPost.php",
                 {
                     post: datas,
-                    id_user: global_id_user
+                    id_user: global_id_user,
+                    cat: category
                 },
                 function (data, status) {
                     getPosts();
