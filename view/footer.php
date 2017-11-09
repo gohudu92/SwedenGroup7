@@ -8,10 +8,6 @@
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/view/side_bar/side_bar_right.php"); ?>
 </div>
 
-<footer>
-
-</footer>
-
 <div id="allChatBox" class="container" style="z-index: 1;height: 1px"></div>
 
 <script src="/view/js/parameters.js"></script>

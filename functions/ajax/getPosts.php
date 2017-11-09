@@ -23,10 +23,10 @@ function getImageUrlUser($bdd, $id)
         if (is_string($img) AND $img != '') {
             return '/view/img/uploads/' . $img;
         } else {
-            return 'view/img/default.png';
+            return '/view/img/default.png';
         }
     }
-    return 'view/img/default.png';
+    return '/view/img/default.png';
 }
 
 function loveThisPost($bdd, $user_id, $post_id)
@@ -42,6 +42,19 @@ function loveThisPost($bdd, $user_id, $post_id)
     return false;
 }
 
+function getComments($bdd, $post_id)
+{
+    $datas = $bdd->prepare("SELECT * FROM `comment` WHERE post_id=? ORDER BY `id` DESC");
+    $datas->execute(array($post_id));
+    $result = array();
+    while ($data = $datas->fetch(PDO::FETCH_ASSOC)) {
+        $data["username"] = getUsernameById($bdd, $data["user_id"]);
+        $data["date"] = date('Y-m-d H:i:s', intval($data["time"]));
+        array_push($result, $data);
+    }
+    return $result;
+}
+
 $datas = $bdd->prepare("SELECT * FROM `post` ORDER BY `id` DESC");
 $datas->execute(array());
 $result = array();
@@ -55,6 +68,7 @@ while ($data = $datas->fetch(PDO::FETCH_ASSOC)) {
         $data["nbLove"] = "";
     }
     $data["imgUrl"] = getImageUrlUser($bdd, $user_id);
+    $data["comments"] = getComments($bdd, $data["id"]);
     array_push($result, $data);
 }
 echo json_encode($result);
