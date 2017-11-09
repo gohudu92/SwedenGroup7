@@ -67,7 +67,7 @@ include_once("view/header.php");
                         '            <hr style="margin-bottom: 5px;"/>\n' +
                         '        </div>\n' +
                         '        <div class="col-xs-12 oneComment" id="' + comment.id + '">\n' +
-                        '            <img src="' + post.imgUrl + '" class="img-responsive img-circle profilePicture"\n' +
+                        '            <img src="' + comment.imgUrl + '" class="img-responsive img-circle profilePicture"\n' +
                         '                 alt="profile">\n' +
                         '            <p><a href="#"><span class="name">' + comment.username + '</span></a> <span class="content">' + comment.content + '</span></p>\n' +
                         '            <p class="date">' + comment.date + '</p>\n';

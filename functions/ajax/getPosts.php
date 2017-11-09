@@ -50,6 +50,7 @@ function getComments($bdd, $post_id)
     while ($data = $datas->fetch(PDO::FETCH_ASSOC)) {
         $data["username"] = getUsernameById($bdd, $data["user_id"]);
         $data["date"] = date('Y-m-d H:i:s', intval($data["time"]));
+        $data["imgUrl"] = getImageUrlUser($bdd, $data["user_id"]);
         array_push($result, $data);
     }
     return $result;
@@ -67,7 +68,7 @@ while ($data = $datas->fetch(PDO::FETCH_ASSOC)) {
     } else {
         $data["nbLove"] = "";
     }
-    $data["imgUrl"] = getImageUrlUser($bdd, $user_id);
+    $data["imgUrl"] = getImageUrlUser($bdd, $data["user_id"]);
     $data["comments"] = getComments($bdd, $data["id"]);
     array_push($result, $data);
 }

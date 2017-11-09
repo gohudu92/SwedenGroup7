@@ -35,6 +35,7 @@ $datas = $bdd->prepare("SELECT * FROM `comment` WHERE user_id=? AND time=?");
 $datas->execute(array($user_id,time()));
 while ($result = $datas->fetch()) {
     $data["id"]=$result["id"];
+    $data["user_id"]=$result["user_id"];
 }
 
 $data["username"] = getUsernameById($bdd, $user_id);
