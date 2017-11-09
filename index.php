@@ -3,7 +3,13 @@ include_once("config/config.php");
 include_once("view/header.php");
 ?>
     <div class="container paddingBot30">
-        <h1>Lastest Posts</h1>
+        <h1>Lastest Posts
+            <?php
+            if (isset($_GET["cat"]) AND $_GET["cat"] != '') {
+                echo " : " . ucfirst($_GET["cat"]);
+            }
+            ?>
+        </h1>
 
         <div class="col-xs-8 col-xs-offset-2">
             <?php if (isConnected()) { ?>
@@ -116,11 +122,17 @@ include_once("view/header.php");
         }
 
         function getPosts() {
+            var cat = "";
+            <?php if (isset($_GET['cat'])) { ?>
+            cat = '<?= $_GET['cat']; ?>';
+            <?php } ?>
             $.post("/functions/ajax/getPosts.php",
                 {
-                    id_user: global_id_user
+                    id_user: global_id_user,
+                    cat: cat
                 },
                 function (data, status) {
+                    console.log(data);
                     displayPosts(JSON.parse(data));
                 });
         }

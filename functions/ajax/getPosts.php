@@ -2,6 +2,8 @@
 include_once("../../config/config.php");
 
 $user_id = $_POST["id_user"];
+$cat = "";
+$cat = $_POST["cat"];
 
 function getUsernameById($bdd, $id)
 {
@@ -70,6 +72,8 @@ while ($data = $datas->fetch(PDO::FETCH_ASSOC)) {
     }
     $data["imgUrl"] = getImageUrlUser($bdd, $data["user_id"]);
     $data["comments"] = getComments($bdd, $data["id"]);
-    array_push($result, $data);
+    if ($data["category_name"] == $cat OR $cat == "") {
+        array_push($result, $data);
+    }
 }
 echo json_encode($result);
