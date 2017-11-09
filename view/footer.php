@@ -12,9 +12,7 @@
 
 </footer>
 
-<div id="allChatBox" class="container" style="z-index: 1">
-
-</div>
+<div id="allChatBox" class="container" style="z-index: 1;height: 1px"></div>
 
 <script src="/view/js/parameters.js"></script>
 

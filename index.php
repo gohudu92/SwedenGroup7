@@ -12,82 +12,9 @@ include_once("view/header.php");
                     <button id="sendEditorData" type="button" class="btn btn-primary">Send</button>
                 </div>
             <?php } ?>
-            <div id="allPost">
-
-            </div>
+            <div id="allPost"></div>
         </div>
     </div>
-
-    <script>//get Posts
-        function displayPosts(array) {
-            $("#allPost").html('');
-            array.forEach(function (post) {
-                $("#allPost").append('' +
-                    '<div class="post" id="postId">\n' +
-                    '    <div class="col-xs-12">\n' +
-                    '        <img src="view/img/default.png" class="img-responsive img-circle profilePicture" alt="profile">\n' +
-                    '        <p class="name">' + post.username + '</p>\n' +
-                    '        <p class="date">' + post.date + '</p>\n' +
-                    '    </div>\n' +
-                    '    <div class="col-xs-12">\n' +
-                    '        <p class="content">' + post.content + '</p>\n' +
-                    '    </div>\n' +
-                    '    <div class="col-xs-10 col-xs-offset-1">\n' +
-                    '        <hr/>\n' +
-                    '    </div>\n' +
-                    '    <div class="col-xs-12">\n' +
-                    '        <span class="pointer" style="margin-right: 5px"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like</span>\n' +
-                    '        <span class="pointer" onclick="hideShowComment(this)"><i class="fa fa-comment-o" aria-hidden="true"></i> Comment</span>\n' +
-                    '    </div>\n' +
-                    '    <hr/>\n' +
-                    '    <div class="comments">\n' +
-                    '        <div class="col-xs-12">\n' +
-                    '            <span><i class="fa fa-thumbs-up noPointer" aria-hidden="true"></i> 5</span>\n' +
-                    '        </div>\n' +
-                    '        <div class="col-xs-10 col-xs-offset-1">\n' +
-                    '            <hr style="margin-bottom: 5px;"/>\n' +
-                    '        </div>\n' +
-                    '        <div class="col-xs-12 oneComment" id="commentId">\n' +
-                    '            <img src="view/img/default.png" class="img-responsive img-circle profilePicture"\n' +
-                    '                 alt="profile">\n' +
-                    '            <p><span class="name">Name</span> <span class="content">Content</span></p>\n' +
-                    '            <p class="date">Date</p>\n' +
-                    '        </div>\n' +
-                    '    </div>\n' +
-                    '    <div class="col-xs-12">\n' +
-                    '        <input style="display: none" class="form-control" type="text" placeholder="Your comment">\n' +
-                    '    </div>\n' +
-                    '</div>' +
-                    '');
-            });
-        }
-
-        $.post("/functions/ajax/getPosts.php",
-            {},
-            function (data, status) {
-                displayPosts(JSON.parse(data));
-            });
-    </script>
-
-    <script>
-        $("#sendEditorData").click(function () {
-            var data = CKEDITOR.instances.editor.getData();
-            var datas = JSON.stringify(data);
-            $.post("/functions/ajax/sendPost.php",
-                {
-                    post: datas,
-                    id_user: global_id_user
-                },
-                function (data, status) {
-                    $.post("/functions/ajax/getPosts.php",
-                        {},
-                        function (data, status) {
-                            displayPosts(JSON.parse(data));
-                        });
-                });
-            CKEDITOR.instances.editor.setData('');
-        });
-    </script>
 
     <script>
         function getPostElement($this) {
@@ -103,8 +30,101 @@ include_once("view/header.php");
             var $input = $($postElement).find("input");
             $($input).slideToggle();
         }
+
+        function displayPosts(array) {
+            $("#allPost").html('');
+            array.forEach(function (post) {
+                $("#allPost").append('' +
+                    '<div class="post" id="' + post.id + '">\n' +
+                    '    <div class="col-xs-12">\n' +
+                    '        <img src="' + post.imgUrl + '" class="img-responsive img-circle profilePicture" alt="profile">\n' +
+                    '        <a href="#"><p class="name">' + post.username + '</p></a>\n' +
+                    '        <p class="date">' + post.date + '</p>\n' +
+                    '    </div>\n' +
+                    '    <div class="col-xs-12">\n' +
+                    '        <p class="content">' + post.content + '</p>\n' +
+                    '    </div>\n' +
+                    '    <div class="col-xs-10 col-xs-offset-1">\n' +
+                    '        <hr/>\n' +
+                    '    </div>\n' +
+                    '    <div class="col-xs-12 interact">\n' +
+                    '        <span class="addRemoveLove pointer ' + post.nbLove + '" onclick="addLove(this)" style="margin-right: 5px"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like</span>\n' +
+                    '        <span class="pointer" onclick="hideShowComment(this)"><i class="fa fa-comment-o" aria-hidden="true"></i> Comment</span>\n' +
+                    '    </div>\n' +
+                    '    <hr/>\n' +
+                    '    <div class="comments">\n' +
+                    '        <div class="col-xs-12">\n' +
+                    '            <span><i class="fa fa-thumbs-up noPointer" aria-hidden="true"></i> <span class="nbLove">' + post.love + '</span></span>\n' +
+                    '        </div>\n' +
+                    '        <div class="col-xs-10 col-xs-offset-1">\n' +
+                    '            <hr style="margin-bottom: 5px;"/>\n' +
+                    '        </div>\n' +
+                    '        <div class="col-xs-12 oneComment" id="commentId">\n' +
+                    '            <img src="view/img/default.png" class="img-responsive img-circle profilePicture"\n' +
+                    '                 alt="profile">\n' +
+                    '            <p><a href="#"><span class="name">Name</span></a> <span class="content">Content</span></p>\n' +
+                    '            <p class="date">Date</p>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '    <div class="col-xs-12">\n' +
+                    '        <input style="display: none" class="form-control" type="text" placeholder="Your comment">\n' +
+                    '    </div>\n' +
+                    '</div>' +
+                    '');
+            });
+        }
+
+        function addLove($this) {
+            var $postElement = getPostElement($this);
+            var $love = $($postElement).find(".addRemoveLove");
+            var $nbLove = $($postElement).find(".nbLove");
+            $.post("/functions/ajax/addRemoveLove.php",
+                {
+                    post: $($postElement).attr("id"),
+                    user: global_id_user
+                },
+                function (data, status) {
+                    if (data === "add") {
+                        $($love).addClass("active");
+                        var $newLove = parseInt($($nbLove).text()) + 1;
+                        $($nbLove).text($newLove);
+                    } else if (data === "remove") {
+                        $($love).removeClass("active");
+                        var $newLove = parseInt($($nbLove).text()) - 1;
+                        $($nbLove).text($newLove);
+                    }
+                });
+        }
+
+        function getPosts() {
+            $.post("/functions/ajax/getPosts.php",
+                {
+                    id_user: global_id_user
+                },
+                function (data, status) {
+                    displayPosts(JSON.parse(data));
+                });
+        }
     </script>
 
+    <script>
+        getPosts();
+    </script>
+    <script>
+        $("#sendEditorData").click(function () {
+            var data = CKEDITOR.instances.editor.getData();
+            var datas = JSON.stringify(data);
+            $.post("/functions/ajax/sendPost.php",
+                {
+                    post: datas,
+                    id_user: global_id_user
+                },
+                function (data, status) {
+                    getPosts();
+                });
+            CKEDITOR.instances.editor.setData('');
+        });
+    </script>
 <?php
 include_once("view/footer.php");
 ?>
