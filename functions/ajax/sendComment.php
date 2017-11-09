@@ -7,19 +7,16 @@ $idPost = $_POST["idPost"];
 
 function getImageUrlUser($bdd, $id)
 {
-    if ($id != 0) {
-        $datas = $bdd->prepare("SELECT * FROM `user` WHERE id=?");
-        $datas->execute(array($id));
-        while ($data = $datas->fetch()) {
-            $img = $data["image"];
-        }
-        if (is_string($img) AND $img != '') {
-            return '/view/img/uploads/' . $img;
-        } else {
-            return '/view/img/default.png';
-        }
+    $datas = $bdd->prepare("SELECT * FROM `user` WHERE id=?");
+    $datas->execute(array($id));
+    while ($data = $datas->fetch()) {
+        $img = $data["image"];
     }
-    return '/view/img/default.png';
+    if (is_string($img) AND $img != '') {
+        return '/view/img/uploads/' . $img;
+    } else {
+        return '/view/img/default.png';
+    }
 }
 
 function getUsernameById($bdd, $id)
@@ -34,9 +31,15 @@ function getUsernameById($bdd, $id)
 $req = $bdd->prepare("INSERT INTO `comment`(`user_id`, `content`, `time`, `post_id`) VALUES (?,?,?,?)");
 $req->execute(array($user_id, $content, time(), $idPost));
 
+$datas = $bdd->prepare("SELECT * FROM `comment` WHERE user_id=? AND time=?");
+$datas->execute(array($user_id,time()));
+while ($result = $datas->fetch()) {
+    $data["id"]=$result["id"];
+}
+
 $data["username"] = getUsernameById($bdd, $user_id);
 $data["contents"] = $content;
 $data["date"] = date('Y-m-d H:i:s', time());
-$data["img"] = getImageUrlUser($bdd, $user_id);
+$data["img"] = getImageUrlUser($bdd, $data["user_id"]);
 
 echo json_encode($data);

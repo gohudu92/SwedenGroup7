@@ -115,3 +115,13 @@ small {
 .paddingBot30{
     padding-bottom: 30px;
 }
+
+.delete{
+    color: #DC143C;
+}
+
+i.deletePost{
+    float: right;
+    margin-right: 5px;
+    color: #DC143C;
+}

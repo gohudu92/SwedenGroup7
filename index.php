@@ -36,10 +36,13 @@ include_once("view/header.php");
             $("#allPost").html('');
             array.forEach(function (post) {
                 var onePost = '' +
-                    '<div class="post" id="' + post.id + '">\n' +
-                    '    <div class="col-xs-12">\n' +
+                    '<div class="post" id="' + post.id + '">\n';
+                if (global_id_user == post.user_id) {
+                    onePost = onePost + '<i onclick="deletePost(this)" class="fa fa-times deletePost" aria-hidden="true"></i>\n';
+                }
+                onePost = onePost + '    <div class="col-xs-12">\n' +
                     '        <img src="' + post.imgUrl + '" class="img-responsive img-circle profilePicture" alt="profile">\n' +
-                    '        <a href="#"><p class="name">' + post.username + '</p></a>\n' +
+                    '        <p class="name"><a href="#">' + post.username + '</a></p>\n' +
                     '        <p class="date">' + post.date + '</p>\n' +
                     '    </div>\n' +
                     '    <div class="col-xs-12">\n' +
@@ -67,8 +70,11 @@ include_once("view/header.php");
                         '            <img src="' + post.imgUrl + '" class="img-responsive img-circle profilePicture"\n' +
                         '                 alt="profile">\n' +
                         '            <p><a href="#"><span class="name">' + comment.username + '</span></a> <span class="content">' + comment.content + '</span></p>\n' +
-                        '            <p class="date">' + comment.date + '</p>\n' +
-                        '        </div>\n';
+                        '            <p class="date">' + comment.date + '</p>\n';
+                    if (global_id_user == comment.user_id) {
+                        onePost = onePost + '<p onclick="deleteComment(this)" class="delete pointer">Delete</p>\n';
+                    }
+                    onePost = onePost + '        </div>\n';
                 });
                 onePost = onePost + '    </div>\n' +
                     '    <div class="col-xs-12">\n' +
@@ -115,19 +121,46 @@ include_once("view/header.php");
         }
 
         function addComment($this, data) {
-            $($this).append('' +
+            var oneComment = '' +
                 '<div class="col-xs-12">\n' +
                 '        </div>\n' +
                 '        <div class="col-xs-10 col-xs-offset-1">\n' +
                 '            <hr style="margin-bottom: 5px;"/>\n' +
                 '        </div>\n' +
-                '        <div class="col-xs-12 oneComment" id="">\n' +
+                '        <div class="col-xs-12 oneComment" id="' + data.id + '">\n' +
                 '            <img src="' + data.img + '" class="img-responsive img-circle profilePicture"\n' +
                 '                 alt="profile">\n' +
                 '            <p><a href="#"><span class="name">' + data.username + '</span></a> <span class="content">' + data.contents + '</span></p>\n' +
                 '            <p class="date">' + data.date + '</p>\n' +
+                '<p onclick="deleteComment(this)" class="delete pointer">Delete</p>\n' +
                 '        </div>\n' +
-                '');
+                '';
+            $($this).append(oneComment);
+        }
+
+        function deleteComment($this) {
+            var comment = $($this).parent();
+            var hr = $(comment).prev();
+            $.post("/functions/ajax/deleteComment.php",
+                {
+                    id: $(comment).attr("id")
+                },
+                function (data, status) {
+                    $(comment).remove();
+                    $(hr).remove();
+                });
+        }
+
+        function deletePost($this) {
+            var postElement = getPostElement($this);
+            $.post("/functions/ajax/deletePost.php",
+                {
+                    id: $(postElement).attr("id")
+                },
+                function (data, status) {
+                    console.log(data);
+                    $(postElement).remove();
+                });
         }
     </script>
 
