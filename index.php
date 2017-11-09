@@ -34,7 +34,7 @@ include_once("view/header.php");
         function displayPosts(array) {
             $("#allPost").html('');
             array.forEach(function (post) {
-                $("#allPost").append('' +
+                var onePost = '' +
                     '<div class="post" id="' + post.id + '">\n' +
                     '    <div class="col-xs-12">\n' +
                     '        <img src="' + post.imgUrl + '" class="img-responsive img-circle profilePicture" alt="profile">\n' +
@@ -53,24 +53,28 @@ include_once("view/header.php");
                     '    </div>\n' +
                     '    <hr/>\n' +
                     '    <div class="comments">\n' +
-                    '        <div class="col-xs-12">\n' +
-                    '            <span><i class="fa fa-thumbs-up noPointer" aria-hidden="true"></i> <span class="nbLove">' + post.love + '</span></span>\n' +
-                    '        </div>\n' +
-                    '        <div class="col-xs-10 col-xs-offset-1">\n' +
-                    '            <hr style="margin-bottom: 5px;"/>\n' +
-                    '        </div>\n' +
-                    '        <div class="col-xs-12 oneComment" id="commentId">\n' +
-                    '            <img src="view/img/default.png" class="img-responsive img-circle profilePicture"\n' +
-                    '                 alt="profile">\n' +
-                    '            <p><a href="#"><span class="name">Name</span></a> <span class="content">Content</span></p>\n' +
-                    '            <p class="date">Date</p>\n' +
-                    '        </div>\n' +
-                    '    </div>\n' +
+                    '    <span class="nbLoveMargin"><i class="fa fa-thumbs-up noPointer" aria-hidden="true"></i> <span class="nbLove">' + post.love + '</span></span>\n';
+
+                for (var i = 0; i < 2; i++) {
+                    onePost = onePost + '<div class="col-xs-12">\n' +
+                        '        </div>\n' +
+                        '        <div class="col-xs-10 col-xs-offset-1">\n' +
+                        '            <hr style="margin-bottom: 5px;"/>\n' +
+                        '        </div>\n' +
+                        '        <div class="col-xs-12 oneComment" id="commentId">\n' +
+                        '            <img src="view/img/default.png" class="img-responsive img-circle profilePicture"\n' +
+                        '                 alt="profile">\n' +
+                        '            <p><a href="#"><span class="name">Name</span></a> <span class="content">Content</span></p>\n' +
+                        '            <p class="date">Date</p>\n' +
+                        '        </div>\n';
+                }
+                onePost = onePost + '    </div>\n' +
                     '    <div class="col-xs-12">\n' +
                     '        <input style="display: none" class="form-control" type="text" placeholder="Your comment">\n' +
                     '    </div>\n' +
                     '</div>' +
-                    '');
+                    '';
+                $("#allPost").append(onePost);
             });
         }
 

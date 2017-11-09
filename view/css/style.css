@@ -102,3 +102,11 @@ small {
 .post .interact .active{
     color: #365899;
 }
+
+.post span.nbLoveMargin{
+    margin-left: 15px;
+}
+
+.post input{
+    margin-top: 5px;
+}
