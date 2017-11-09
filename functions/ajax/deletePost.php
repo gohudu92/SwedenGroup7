@@ -35,5 +35,22 @@ foreach ($allComment as $obj) {
     deleteComment($obj["id"], $bdd);
 }
 
+$cat_name = "";
+$datas = $bdd->prepare("SELECT * FROM `post` WHERE `id`=?");
+$datas->execute(array($id));
+while ($data = $datas->fetch(PDO::FETCH_ASSOC)) {
+    $cat_name = $data["category_name"];
+}
+
+if ($cat_name != "") {
+    $datas = $bdd->prepare("SELECT * FROM `post` WHERE `category_name`=?");
+    $datas->execute(array($cat_name));
+    $count = $datas->rowCount();
+    if($count<=1){
+        $req = $bdd->prepare("DELETE FROM `category` WHERE `name`=?");
+        $req->execute(array($cat_name));
+    }
+}
+
 $req = $bdd->prepare("DELETE FROM `post` WHERE `id`=?");
 $req->execute(array($id));

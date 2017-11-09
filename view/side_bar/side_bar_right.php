@@ -1,5 +1,5 @@
 <p class="h4">Category</p>
-
+<a href="/">All Category</a>
 <ul>
     <?php
     $allCat = getCategories($bdd);

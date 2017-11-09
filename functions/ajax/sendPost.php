@@ -4,7 +4,7 @@ include_once("../../config/config.php");
 $data = $_POST['post'];
 $data = json_decode($data);
 $id_user = $_POST['id_user'];
-$cat_name = $_POST["cat"];
+$cat_name = strtolower($_POST["cat"]);
 
 if ($data != "" AND $cat_name != '') {
     $req = $bdd->prepare("INSERT INTO `post`(`user_id`, `content`, `time`, `love`, `category_name`) VALUES (?,?,?,?,?)");
