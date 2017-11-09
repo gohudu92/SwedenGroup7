@@ -14,16 +14,19 @@ function getUsernameById($bdd, $id)
 
 function getImageUrlUser($bdd, $id)
 {
-    $datas = $bdd->prepare("SELECT * FROM `user` WHERE id=?");
-    $datas->execute(array($id));
-    while ($data = $datas->fetch()) {
-        $img = $data["image"];
+    if ($id != 0) {
+        $datas = $bdd->prepare("SELECT * FROM `user` WHERE id=?");
+        $datas->execute(array($id));
+        while ($data = $datas->fetch()) {
+            $img = $data["image"];
+        }
+        if (is_string($img) AND $img != '') {
+            return '/view/img/uploads/' . $img;
+        } else {
+            return 'view/img/default.png';
+        }
     }
-    if (is_string($img) AND $img != '') {
-        return '/view/img/uploads/' . $img;
-    } else {
-        return 'view/img/default.png';
-    }
+    return 'view/img/default.png';
 }
 
 function loveThisPost($bdd, $user_id, $post_id)
@@ -51,7 +54,7 @@ while ($data = $datas->fetch(PDO::FETCH_ASSOC)) {
     } else {
         $data["nbLove"] = "";
     }
-    $data["imgUrl"]=getImageUrlUser($bdd, $user_id);
+    $data["imgUrl"] = getImageUrlUser($bdd, $user_id);
     array_push($result, $data);
 }
 echo json_encode($result);
