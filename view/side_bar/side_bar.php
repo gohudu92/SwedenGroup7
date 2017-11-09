@@ -1,5 +1,8 @@
 <div id="divBeforeSideBar" style="width: 100%;"></div>
-<h4>Connected User</h4>
+
+<p class="h4">Connected User</p>
+
+<div id="usersConnected" class="usersSideBar"></div>
 
 <script>
     function waitBeforeShowOnline() {
@@ -35,7 +38,3 @@
         waitBeforeShowOnline();
     }
 </script>
-
-<div id="usersConnected" class="usersSideBar">
-
-</div>

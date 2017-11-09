@@ -20,7 +20,18 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/functions/_functions.php");
     <!-- Library -->
     <script src="/view/library/jquery/jquery-3.2.1.min.js"></script>
     <script src="/view/library/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="/view/library/ckeditor/ckeditor.js"></script> <!--CKEditor-->
+    <script src="/view/library/ckeditor/samples/js/sample.js"></script> <!--CKEditor-->
     <!-- Library -->
+
+    <script>
+        <?php
+        if (!isConnected()){?>
+        var global_id_user = 0;
+        <?php }else{ ?>
+        var global_id_user =<?= getId(); ?>
+        <?php } ?>
+    </script>
 
 </head>
 <body>
@@ -178,4 +189,4 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/functions/_functions.php");
     }
     ?>
 </header>
-<div class="col-xs-10 col-xs-offset-2">
+<div class="col-xs-8 col-xs-offset-2">
