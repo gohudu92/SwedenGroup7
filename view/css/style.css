@@ -1,46 +1,99 @@
-body{
-	overflow-x: hidden;
-}
-.modal-footer{
-	clear: both;
-}
-#side_bar{
-	position: fixed;
-	top: 0px;
-	z-index: -1;
-}
-.usersSideBar i.fa{
-	padding-left: 10px;
-	cursor: pointer;
-}
-nav{
-	margin-bottom: 0px !important;
-	border-radius: 0px !important;
+body {
+    overflow-x: hidden;
 }
 
-.container{
-	width: 100% !important;
+.pointer{
+    cursor: pointer;
+}
+
+.modal-footer {
+    clear: both;
+}
+
+#side_bar {
+    position: fixed;
+    top: 0px;
+    z-index: -1;
+}
+
+.usersSideBar i.fa {
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+nav {
+    margin-bottom: 0px !important;
+    border-radius: 0px !important;
+}
+
+.container {
+    width: 100% !important;
 }
 
 small {
-	display: block;
-	line-height: 1.428571429;
-	color: #999;
-}
-.noPadding{
-	padding: 0;
-}
-.fa{
-	cursor: pointer;
+    display: block;
+    line-height: 1.428571429;
+    color: #999;
 }
 
-.navbar-nav>li>.dropdown-menu{
-	padding: 10px 20px 10px 20px;
+.noPadding {
+    padding: 0;
 }
 
-.end-editor{
-	width: 100%;
-	background-color: #f5f5f5;
-	text-align: right;
-	padding: 2px 2px 2px 2px;
+.fa {
+    cursor: pointer;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    padding: 10px 20px 10px 20px;
+}
+
+.end-editor {
+    width: 100%;
+    background-color: #f5f5f5;
+    text-align: right;
+    padding: 2px 2px 2px 2px;
+}
+
+.post {
+    background-color: #f5f5f5;
+    margin-top: 20px;
+    display: inline-block;
+    padding: 5px 0px 5px 0px;
+    border-radius: 5px 5px 5px 5px;
+    width: 100%;
+}
+
+.post .name {
+    color: #365899;
+    font-weight: bold;
+}
+
+.post img.profilePicture {
+    width: 50px;
+    float: left;
+    margin-right: 10px;
+}
+
+.date {
+    color: #90949c;
+    font-size: 11px;
+}
+
+.noPointer{
+    cursor: inherit;
+}
+
+.post .comments{
+    display: inline-block;
+    width: 100%;
+    background-color: lightblue;
+}
+
+.post hr{
+    width: 100%;
+    color: black;
+    display: inherit;
+    border-color: lightslategrey;
+    margin: 0px 0px 0px 0px;
 }

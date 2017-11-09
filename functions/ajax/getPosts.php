@@ -16,6 +16,7 @@ $result = array();
 while ($data = $datas->fetch(PDO::FETCH_ASSOC)) {
     $username = getUsernameById($bdd, $data["user_id"]);
     $data["username"] = $username;
+    $data["date"] = date('Y-m-d H:i:s', intval($data["time"]));
     array_push($result, $data);
 }
 echo json_encode($result);
